@@ -75,10 +75,10 @@ try {
     }, $top_services));
     $template->setValue('TopServices', $top_services_text);
 
-    // Top Barangays from address field in beneficiaries
+    // Top Barangays from beneficiaries
     $stmt = $conn->prepare("
         SELECT 
-            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(address, ',', 2), ',', -1)) AS barangay,
+            barangay,
             COUNT(*) AS count 
         FROM beneficiaries 
         GROUP BY barangay 
@@ -96,14 +96,14 @@ try {
     $average_amount = $data['total_patients'] > 0 ? $total_spent / $data['total_patients'] : 0;
     $template->setValue('AverageAmount', '₱' . number_format($average_amount, 2));
 
-    // Top Barangay Served by Volume (from transactions address)
+    // Top Barangay Served by Volume (from transactions)
     $stmt = $conn->prepare("
         SELECT 
-            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(b.address, ',', 2), ',', -1)) AS barangay,
+            b.barangay,
             COUNT(*) AS count 
         FROM transactions t
         INNER JOIN beneficiaries b ON t.beneficiary_id = b.id
-        GROUP BY barangay 
+        GROUP BY b.barangay 
         ORDER BY count DESC 
         LIMIT 1
     ");
@@ -112,14 +112,14 @@ try {
     $top_barangay_service = $stmt->fetch(PDO::FETCH_ASSOC);
     $template->setValue('TopBarangaysByService', $top_barangay_service ? $top_barangay_service['barangay'] . ' (' . $top_barangay_service['count'] . ')' : 'N/A');
 
-    // Top Sitio Served by Volume (from transactions address)
+    // Top Sitio Served by Volume (from transactions)
     $stmt = $conn->prepare("
         SELECT 
-            TRIM(SUBSTRING_INDEX(b.address, ',', 1)) AS sitio,
+            b.sitio,
             COUNT(*) AS count 
         FROM transactions t
         INNER JOIN beneficiaries b ON t.beneficiary_id = b.id
-        GROUP BY sitio 
+        GROUP BY b.sitio 
         ORDER BY count DESC 
         LIMIT 1
     ");

@@ -69,6 +69,14 @@ require_once '../includes/header.php';
                 <p>Manage attributes for barangays and sitios</p>
             </div>
         </a>
+        <!-- Combined Transactions  -->
+        <a href="combined_transactions/index.php" class="admin-card">
+            <div class="card-icon">📦</div>
+            <div class="card-content">
+                <h3>Combined Transactions</h3>
+                <p>Manage combined transactions for beneficiaries</p>
+            </div>
+        </a>
     </div>
 </div>
 <div style="

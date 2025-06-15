@@ -22,7 +22,21 @@
                     </div>
                     
                     <div class="cta-section">
-                        <a href="login.php" class="btn btn-primary">Login to System</a>
+                        <?php
+                        
+                        if (!isset($_SESSION['user_id'])) {
+                            // Not logged in - show login button
+                            ?>
+                            <a href="auth/login.php" class="btn btn-primary">Login to System</a>
+                            <?php
+                        } elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                            // Logged in as admin
+                            ?>
+                            <a href="admin/index.php" class="btn btn-primary">Admin</a>
+                            <?php
+                        }
+                        // If logged in but not admin, nothing will show
+                        ?>
                     </div>
                 </div>
             </div>

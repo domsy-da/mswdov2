@@ -74,6 +74,8 @@ $recent_transactions = $pdo->query("
 <html>
 <head>
     <title>Budget Management - MSWDO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             background: #f5f5f5;
@@ -359,7 +361,6 @@ $recent_transactions = $pdo->query("
                         <th>Date</th>
                         <th>Purpose</th>
                         <th>Amount Used</th>
-                        <th>Remaining Budget</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -368,7 +369,6 @@ $recent_transactions = $pdo->query("
                             <td><?= date('M d, Y', strtotime($transaction['transaction_date'])) ?></td>
                             <td><?= htmlspecialchars($transaction['request_purpose']) ?></td>
                             <td>₱<?= number_format($transaction['amount_used'], 2) ?></td>
-                            <td>₱<?= number_format($transaction['budget_amount'] - $transaction['amount_used'], 2) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
