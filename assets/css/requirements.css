@@ -1,0 +1,155 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+/* Form styles */
+.requirements-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f8fafc;
+}
+
+/* Requirements list styles */
+.requirements-list {
+    margin-top: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+.requirement-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.requirement-item:last-child {
+    border-bottom: none;
+}
+
+.requirement-item label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.requirement-item input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid #4299e1;
+    border-radius: 3px;
+}
+
+/* Back button styles */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #edf2f7;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #e2e8f0;
+    color: #2d3748;
+}
+
+.back-arrow {
+    margin-right: 0.5rem;
+}
+
+/* Page header styles */
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    margin: 1rem 0;
+    color: #2d3748;
+    font-size: 1.8rem;
+}
+
+/* Action buttons styles */
+.form-actions {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.btn-primary {
+    background-color: #4299e1;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #3182ce;
+}
+
+/* Message styles */
+.no-requirements, 
+.error-message {
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.no-requirements {
+    color: #718096;
+    background-color: #f8fafc;
+}
+
+.error-message {
+    color: #e53e3e;
+    background-color: #fff5f5;
+    border: 1px solid #feb2b2;
+}
