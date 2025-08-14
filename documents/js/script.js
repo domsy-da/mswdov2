@@ -73,7 +73,7 @@ documentSelect.addEventListener('change', function() {
       path = `gen_saved/${beneficiaryId}/${service}_${documentType}.php`;
     } else {
       // Load from templates directory
-      path = `templates/${service}_${documentType}.php`;
+      path = `saved/${service}_${documentType}.php`;
     }
 
     fetch(path)
@@ -89,77 +89,125 @@ documentSelect.addEventListener('change', function() {
 });
 let lastTransactionId = null;
 
+function showToast(message, onSaveAndPreview, showOnlyPreview) {
+  const toast = document.getElementById('customToast');
+  document.getElementById('toastMsg').textContent = message;
+  toast.style.display = 'block';
+
+  // Add two buttons
+  let btns = `
+    <button id="toastSavePreviewBtn" style="margin:8px;background:#222;color:#fff;padding:7px 18px;border-radius:5px;cursor:pointer;font-weight:600;">Save & Preview</button>
+    <button id="toastPreviewOnlyBtn" style="margin:8px;background:#fff;color:#222;padding:7px 18px;border-radius:5px;cursor:pointer;font-weight:600;border:1px solid #222;">Preview Only</button>
+    <span id="toastCountdown" style="margin-left:10px;"></span>
+  `;
+  toast.querySelector('.toast-actions').innerHTML = btns;
+
+  // Countdown animation
+  const countdownSpan = document.getElementById('toastCountdown');
+  let seconds = 5;
+  countdownSpan.textContent = `(Closing in ${seconds}...)`;
+  let countdown = setInterval(() => {
+    seconds--;
+    if (seconds > 0) {
+      countdownSpan.textContent = `(Closing in ${seconds}...)`;
+    } else {
+      countdownSpan.textContent = '';
+      toast.style.display = 'none';
+      clearInterval(countdown);
+    }
+  }, 1000);
+
+  document.getElementById('toastSavePreviewBtn').onclick = function() {
+    toast.style.display = 'none';
+    clearInterval(countdown);
+    countdownSpan.textContent = '';
+    if (typeof onSaveAndPreview === 'function') onSaveAndPreview();
+  };
+  document.getElementById('toastPreviewOnlyBtn').onclick = function() {
+    toast.style.display = 'none';
+    clearInterval(countdown);
+    countdownSpan.textContent = '';
+    if (typeof showOnlyPreview === 'function') showOnlyPreview();
+  };
+}
+
 document.getElementById('preview').addEventListener('click', function() {
-  if (!lastFormData) {
-    alert('Please fill and submit the details form first.');
+  const beneficiaryId = document.getElementById('client_id').value;
+  if (!beneficiaryId) {
+    alert('Please select a beneficiary first.');
     return;
   }
 
-  if (lastTransactionId) {
-    // Only preview PDF on subsequent clicks
-    const html = tinymce.get('certificate').getContent();
-    fetch('generate_pdf.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'html=' + encodeURIComponent(html)
-    })
-    .then(res => res.blob())
-    .then(blob => {
-      const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
-    });
-    return;
-  }
+  fetchLastTempTran(beneficiaryId).then(() => {
+    if (!lastFormData) {
+      showToast('No temporary transaction found for this beneficiary.', null, true);
+      return;
+    }
 
-  if (confirm('Previewing will also insert this data into the database. Continue?')) {
-    // 1. Insert to database
-    fetch('save_transaction.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lastFormData)
-    })
-    .then(response => response.json())
-    .then(dbResult => {
-      if (dbResult.success && dbResult.transaction_id) {
-        // 2. Finalize transaction (money status, budget, etc.)
-        fetch('finalize_transaction.php', {
+    showToast(
+      'Save to database and preview? or just preview',
+      function saveAndPreview() {
+        // 1. Save to transactions table
+        fetch('save_transaction.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            beneficiary_id: lastFormData.beneficiary_id,
-            transaction_id: dbResult.transaction_id,
-            request_amount: lastFormData.request_amount,
-            patient_name: lastFormData.patient_name
-          })
+          body: JSON.stringify(lastFormData)
         })
-        .then(res => res.json())
-        .then(finalizeResult => {
-          if (finalizeResult.success) {
-            lastTransactionId = dbResult.transaction_id; // Store for next clicks
-            // 3. Proceed to preview PDF
-            const html = tinymce.get('certificate').getContent();
-            fetch('generate_pdf.php', {
+        .then(response => response.json())
+        .then(dbResult => {
+          if (dbResult.success && dbResult.transaction_id) {
+            // 2. Finalize transaction
+            const finalizeData = {
+              beneficiary_id: lastFormData.beneficiary_id,
+              transaction_id: dbResult.transaction_id,
+              request_amount: lastFormData.amount || lastFormData.request_amount || 0,
+              patient_name: lastFormData.patient_name || ''
+            };
+            return fetch('finalize_transaction.php', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: 'html=' + encodeURIComponent(html)
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(finalizeData)
             })
-            .then(res => res.blob())
-            .then(blob => {
-              const url = URL.createObjectURL(blob);
-              window.open(url, '_blank');
+            .then(res => res.json())
+            .then(finalizeResult => {
+              if (finalizeResult.success) {
+                // 3. Preview PDF
+                const html = tinymce.get('certificate').getContent();
+                fetch('generate_pdf.php', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                  body: 'html=' + encodeURIComponent(html)
+                })
+                .then(res => res.blob())
+                .then(blob => {
+                  const url = URL.createObjectURL(blob);
+                  window.open(url, '_blank');
+                });
+              } else {
+                alert('Finalize transaction failed: ' + (finalizeResult.error || 'Unknown error.'));
+              }
             });
           } else {
-            alert('Finalize transaction failed: ' + (finalizeResult.error || 'Unknown error.'));
+            alert('Database insert failed: ' + (dbResult.error || 'Unknown error.'));
           }
         });
-      } else {
-        alert('Database insert failed: ' + (dbResult.error || 'Unknown error.'));
+      },
+      function previewOnly() {
+        // Just preview
+        const html = tinymce.get('certificate').getContent();
+        fetch('generate_pdf.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'html=' + encodeURIComponent(html)
+        })
+        .then(res => res.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          window.open(url, '_blank');
+        });
       }
-    })
-    .catch(error => {
-      alert('An error occurred while inserting to the database: ' + error);
-    });
-  }
+    );
+  });
 });
 // Show & Close modal & Insert details (unchanged)
 document.getElementById('fillDetails').addEventListener('click', function() {
@@ -180,33 +228,59 @@ document.getElementById('detailsForm').addEventListener('submit', function(e) {
     lastFormData[key] = value;
   });
 
-  fetch('generate_certificates.php', {
+  // 1. Save to temp_tran first
+  fetch('save_temp_tran.php', {
     method: 'POST',
-    body: formData
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(lastFormData)
   })
   .then(response => response.json())
-  .then(data => {
-    // Handle response (success/failure)
-    if (data.success) {
-      alert('Certificate generated successfully!');
-      // Optionally close modal or update UI
-      document.getElementById('detailsModal').style.display = 'none';
-      console.log('Certificate data:', data.req_pur);
-      if (data.req_pur) {
-          // Map form value to service_select value
-          let serviceValue = '';
-          if (data.req_pur === 'med_exp') serviceValue = 'medical';
-          else if (data.req_pur === 'educational') serviceValue = 'educational';
-          else if (data.req_pur === 'burial') serviceValue = 'burial';
+  .then(tempResult => {
+    if (tempResult.success) {
+      // 2. If success, proceed to generate_certificates.php
+      fetch('generate_certificates.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Certificate generated successfully!');
+          document.getElementById('detailsModal').style.display = 'none';
+          console.log('Certificate data:', data.req_pur);
+          if (data.req_pur) {
+            let serviceValue = '';
+            if (data.req_pur === 'med_exp') serviceValue = 'medical';
+            else if (data.req_pur === 'educational') serviceValue = 'educational';
+            else if (data.req_pur === 'burial') serviceValue = 'burial';
 
-          document.getElementById('service_select').value = serviceValue;
-          document.getElementById('service_select').dispatchEvent(new Event('change'));
-      }
+            document.getElementById('service_select').value = serviceValue;
+            document.getElementById('service_select').dispatchEvent(new Event('change'));
+          }
+        } else {
+          alert('Error: ' + (data.message || 'Could not generate certificate.'));
+        }
+      })
+      .catch(error => {
+        alert('An error occurred: ' + error);
+      });
     } else {
-      alert('Error: ' + (data.message || 'Could not generate certificate.'));
+      alert('Error saving temporary transaction: ' + (tempResult.error || 'Unknown error.'));
     }
   })
   .catch(error => {
-    alert('An error occurred: ' + error);
+    alert('An error occurred while saving temporary transaction: ' + error);
   });
 });
+
+function fetchLastTempTran(beneficiaryId) {
+  return fetch('get_temp_tran.php?beneficiary_id=' + encodeURIComponent(beneficiaryId))
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.transaction) {
+        lastFormData = data.transaction;
+      } else {
+        lastFormData = null;
+      }
+    });
+}

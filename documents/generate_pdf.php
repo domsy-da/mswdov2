@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $options->set('isRemoteEnabled', true);
 
   $dompdf = new Dompdf($options);
-  $dompdf->loadHtml('<html><body>' . $html . '</body></html>');
+  $dompdf->set_option('defaultFont', 'Helvetica');
+  $dompdf->loadHtml('<html><body style="font-size: 14px; line-height: 1.3;">'. $html .'</body></html>');
   $dompdf->setPaper('A4', 'portrait');
   $dompdf->render();
   $dompdf->stream('certificate.pdf', ['Attachment' => false]);

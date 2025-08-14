@@ -14,122 +14,15 @@
 </tr>
 </tbody>
 </table>
-<hr style="border: 1px solid black; margin: 2px 0;"><hr style="border: 1px solid black; margin: 0 0 20px 0;"><!-- Title -->
-<h2 style="text-align: center; margin-bottom: 30px; text-decoration: underline;">SOCIAL CASE STUDY REPORT</h2>
-<!-- I. IDENTIFYING INFORMATION -->
-<h4>I. IDENTIFYING INFORMATION</h4>
-<table style="width: 100%; border: 1px solid black; border-collapse: collapse; margin-bottom: 20px;">
-<tbody>
-<tr>
-<td style="border: 1px solid black;"><strong>Name of Client:</strong></td>
-<td style="border: 1px solid black;">Doms Agoncillo</td>
-<td style="border: 1px solid black;"><strong>Name of Patient:</strong></td>
-<td style="border: 1px solid black;">Doms Agoncillo</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Age:</strong></td>
-<td style="border: 1px solid black;">22</td>
-<td style="border: 1px solid black;"><strong>Age:</strong></td>
-<td style="border: 1px solid black;">22</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Civil Status:</strong></td>
-<td style="border: 1px solid black;">Single</td>
-<td style="border: 1px solid black;"><strong>Civil Status:</strong></td>
-<td style="border: 1px solid black;">Single</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Birthday:</strong></td>
-<td style="border: 1px solid black;">2003-02-21</td>
-<td style="border: 1px solid black;"><strong>Birthday:</strong></td>
-<td style="border: 1px solid black;">2003-02-21</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Birthplace:</strong></td>
-<td style="border: 1px solid black;">Pinamalayan Oriental Mindoro</td>
-<td style="border: 1px solid black;"><strong>Birthplace:</strong></td>
-<td style="border: 1px solid black;">Pinamalayan Oriental Mindoro</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Educational Attainment:</strong></td>
-<td style="border: 1px solid black;">none</td>
-<td style="border: 1px solid black;"><strong>Educational Attainment:</strong></td>
-<td style="border: 1px solid black;">none</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Occupation:</strong></td>
-<td style="border: 1px solid black;">None</td>
-<td style="border: 1px solid black;"><strong>Occupation:</strong></td>
-<td style="border: 1px solid black;">Patient</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Religion:</strong></td>
-<td style="border: 1px solid black;">SDA</td>
-<td style="border: 1px solid black;"><strong>Religion:</strong></td>
-<td style="border: 1px solid black;">SDA</td>
-</tr>
-<tr>
-<td style="border: 1px solid black;"><strong>Address:</strong></td>
-<td style="border: 1px solid black;">Purok 1, Malamig, Gloria, Oriental Mindoro</td>
-<td style="border: 1px solid black;"><strong>Address:</strong></td>
-<td style="border: 1px solid black;">Purok 1, Malamig, Gloria, Oriental Mindoro</td>
-</tr>
-</tbody>
-</table>
-<!-- II. FAMILY COMPOSITION -->
-<h4>II. FAMILY COMPOSITION</h4>
-<table style="width: 100%; border: 1px solid black; border-collapse: collapse; margin-bottom: 20px;">
-<thead>
-<tr>
-<th style="border: 1px solid black;">NAME</th>
-<th style="border: 1px solid black;">AGE</th>
-<th style="border: 1px solid black;">CIVIL STATUS</th>
-<th style="border: 1px solid black;">RELATIONSHIP</th>
-<th style="border: 1px solid black;">EDUCATIONAL ATTAINMENT</th>
-<th style="border: 1px solid black;">OCCUPATION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-            <td style="border: 1px solid black; text-align: center;">Glenn Agoncillo</td>
-            <td style="border: 1px solid black; text-align: center;">27</td>
-            <td style="border: 1px solid black; text-align: center;">Single</td>
-            <td style="border: 1px solid black; text-align: center;">Brother</td>
-            <td style="border: 1px solid black; text-align: center;">High School Graduate</td>
-            <td style="border: 1px solid black; text-align: center;">None</td>
-        </tr><tr>
-            <td style="border: 1px solid black; text-align: center;">Domingo Agoncillo SR</td>
-            <td style="border: 1px solid black; text-align: center;">64</td>
-            <td style="border: 1px solid black; text-align: center;">Widowed</td>
-            <td style="border: 1px solid black; text-align: center;">Father</td>
-            <td style="border: 1px solid black; text-align: center;">High School Graduate</td>
-            <td style="border: 1px solid black; text-align: center;">None</td>
-        </tr>
-<!-- Repeat for additional family members --></tbody>
-</table>
-<!-- Sections -->
-<h4>II. PROBLEM PRESENTED:</h4>
-<p style="text-align: justify; text-indent: 40px;">Doms Agoncillo is seeking financial assistance from the Municipal Social Welfare and Development Office (MSWDO). he is suffering from Bahong bibig and needs financial assistance for Dentures. The supporting family is struggling to cope due to financial constraints.</p>
-<!-- IV. DIAGNOSIS -->
-<h4>IV. DIAGNOSIS:</h4>
-<p style="text-align: justify; text-indent: 40px;">The condition of the client creates anxiety and depression to the whole family because of his situation. The family has no stable source of income aside from daily paid labor which can barely cover their daily needs, creating an additional burden. According to the Assessor and Treasury Office of this Municipality, they have no taxable property.</p>
-<!-- V. RECOMMENDATION -->
-<h4>V. RECOMMENDATION:</h4>
-<p style="text-align: justify; text-indent: 40px;">Based on the present financial situation, we strongly recommend Doms Agoncillo to avail financial assistance in the amount of ₱200.00 to lessen their financial burden for humanitarian reasons.</p>
-<!-- Signature Block: Prepared by (left) and Noted by (right) using table for PDF compatibility -->
-<table style="width: 100%; margin-top: 13px;">
-  <tr>
-    <!-- Prepared by -->
-    <td style="width: 50%; text-align: left; vertical-align: top;">
-      <p style="margin: 0;">Prepared by:</p>
-      <p style="margin: 0; font-weight: bold;">Maria Santos</p>
-      <p style="margin: 0;">Social Worker</p>
-    </td>
-    <!-- Noted by -->
-    <td style="width: 50%; text-align: right; vertical-align: top;">
-      <p style="margin: 0;">Noted by:</p>
-      <p style="margin: 0; font-weight: bold;">Pedro Reyes</p>
-      <p style="margin: 0;">MSWDO Head</p>
-    </td>
-  </tr>
-</table>
+<!-- Divider Lines --><hr style="border: 1px solid black; margin: 2px 0;"><hr style="border: 1px solid black; margin: 0 0 20px 0;"><!-- Title -->
+<h2 style="text-align: center; margin-bottom: 30px;"><span style="text-decoration: underline;">C</span>&nbsp;<span style="text-decoration: underline;">E</span>&nbsp;<span style="text-decoration: underline;">R</span>&nbsp;<span style="text-decoration: underline;">T</span>&nbsp;<span style="text-decoration: underline;">I</span>&nbsp;<span style="text-decoration: underline;">F</span>&nbsp;<span style="text-decoration: underline;">I</span>&nbsp;<span style="text-decoration: underline;">C</span>&nbsp;<span style="text-decoration: underline;">A</span>&nbsp;<span style="text-decoration: underline;">T</span>&nbsp;<span style="text-decoration: underline;">E</span></h2>
+<!-- Body Content -->
+<p style="text-align: justify; text-indent: 40px; line-height: 1.6;">This is to certify that <strong>Fred Rico</strong> <strong>Married</strong> of legal age/s resident/s of <strong>Diolia, Gaudencio Antonino, Gloria, Oriental Mindoro</strong> is financially incapable to support her herself school expenses.</p>
+<p style="text-align: justify; text-indent: 40px; line-height: 1.6;">This further certifies that their income is below family threshold. The family doesn't have any real property for taxation purposes according to the Assessor and Treasury Office of this Municipality.</p>
+<p style="text-align: justify; text-indent: 40px; line-height: 1.6;">Issued this <strong>2025-08-06</strong> for the purpose of seeking financial assistance.</p>
+<!-- Signature Block -->
+<div style="text-align: right; margin-top: 80px;">
+<p style="margin: 0;">Signed by:</p>
+<p style="margin: 0; font-weight: bold;">Doms Agoncillo</p>
+<p style="margin: 0;">Municipal Social Welfare &amp; Dev&rsquo;t Officer</p>
+</div>

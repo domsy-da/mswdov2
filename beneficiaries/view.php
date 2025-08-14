@@ -266,6 +266,9 @@ if ($money_status) {
                         <a href="manage_relatives.php?beneficiary_id=<?= $beneficiary['id'] ?>" class="btn btn-info">
                             👥 Manage Relatives
                         </a>
+                        <a href="../history/view.php?id=<?= $beneficiary['id'] ?>" class="btn btn-info">
+                            🕛 History
+                        </a>
                         <?php if ($remaining_balance > 0): ?>
                             <a href="select_service.php?beneficiary_id=<?= $beneficiary['id'] ?>" class="btn btn-success">
                                 📝 Make Application

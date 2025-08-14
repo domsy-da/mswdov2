@@ -32,7 +32,7 @@
   <select id="document_select" disabled style="padding: 6px 12px; border-radius: 6px; border: 1px solid #bbb; background: #fafbfc; font-size: 1rem;">
     <option value="">-- Select Document --</option>
   </select>
-  <a href="index.php" style="margin-left: 12px; color: #1976d2; text-decoration: none; font-weight: bold;">&larr; Go Back</a>
+  <a href="javascript:window.history.back();" style="margin-left: 12px; color:rgb(78, 78, 78); text-decoration: none; font-weight: bold;">&larr; Go Back</a>
 </div>
 
 <textarea id="certificate">

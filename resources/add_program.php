@@ -10,14 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             program_name, 
             program_type, 
             program_description, 
-            target_beneficiaries
-        ) VALUES (?, ?, ?, ?)");
+            target_beneficiaries,
+            start_datetime,
+            end_datetime
+        ) VALUES (?, ?, ?, ?, ?, ?)");
         
         $stmt->execute([
             $_POST['program_name'],
             $_POST['program_type'],
             $_POST['program_description'],
-            $_POST['target_beneficiaries']
+            $_POST['target_beneficiaries'],
+            $_POST['start_datetime'],
+            $_POST['end_datetime']
         ]);
 
         echo json_encode([

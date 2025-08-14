@@ -45,7 +45,25 @@ $request_amount = isset($_POST['request_amount']) && $_POST['request_amount'] !=
 $placeholders = [
     '[Client Name]'           => $_POST['client_name'] ?? '',
     '[Client Address]'        => $_POST['complete_address'] ?? '',
-    '[Relationship]'          => $_POST['relation'] ?? '',
+    '[Relationship]'     => (function() {
+        $relation = $_POST['relation'] ?? '';
+        $gender = strtolower($_POST['patient_gender'] ?? '');
+        if (!$relation) return '';
+        // Map relation to pronoun
+        $female_relations = ['mother', 'sister', 'wife', 'daughter', 'herself'];
+        $male_relations = ['father', 'brother', 'husband', 'son', 'himself'];
+        if (in_array(strtolower($relation), $female_relations)) {
+            return 'her ' . $relation;
+        } elseif (in_array(strtolower($relation), $male_relations)) {
+            return 'his ' . $relation;
+        } elseif ($gender === 'female') {
+            return 'her ' . $relation;
+        } elseif ($gender === 'male') {
+            return 'his ' . $relation;
+        } else {
+            return 'their ' . $relation;
+        }
+    })(),
     '[Prepared By]'           => $_POST['prep_by'] ?? '',
     '[Civil Status]'          => $_POST['civil_status'] ?? '',
     '[Request Date]'          => $_POST['request_date'] ?? '',
@@ -77,10 +95,10 @@ $placeholders = [
 // Gender-based pronouns for [He/She] and [His/Her]
 $gender = strtolower($_POST['patient_gender'] ?? $_POST['client_gender'] ?? '');
 if ($gender === 'male') {
-    $placeholders['[He/She]'] = 'he';
+    $placeholders['[He/She]'] = 'He';
     $placeholders['[His/Her]'] = 'his';
 } elseif ($gender === 'female') {
-    $placeholders['[He/She]'] = 'she';
+    $placeholders['[He/She]'] = 'She';
     $placeholders['[His/Her]'] = 'her';
 } else {
     $placeholders['[He/She]'] = '';

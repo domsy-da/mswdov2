@@ -19,10 +19,10 @@
 <!-- Body Content -->
 <p style="text-align: justify; text-indent: 40px; line-height: 1.6;">This is to certify that <strong>Doms Agoncillo</strong> <strong>Single</strong> of legal age/s resident/s of <strong>Purok 1, Malamig, Gloria, Oriental Mindoro</strong> is financially incapable to support his Dentures.</p>
 <p style="text-align: justify; text-indent: 40px; line-height: 1.6;">This further certifies that their income is below family threshold. The family doesn't have any real property for taxation purposes according to the Assessor and Treasury Office of this Municipality.</p>
-<p style="text-align: justify; text-indent: 40px; line-height: 1.6;">Issued this <strong>2025-06-21</strong> for the purpose of seeking financial assistance.</p>
+<p style="text-align: justify; text-indent: 40px; line-height: 1.6;">Issued this <strong>2025-06-24</strong> for the purpose of seeking financial assistance.</p>
 <!-- Signature Block -->
 <div style="text-align: right; margin-top: 80px;">
 <p style="margin: 0;">Signed by:</p>
-<p style="margin: 0; font-weight: bold;">Doms Agoncillo</p>
+<p style="margin: 0; font-weight: bold;">Maria Santos</p>
 <p style="margin: 0;">Municipal Social Welfare &amp; Dev&rsquo;t Officer</p>
 </div>

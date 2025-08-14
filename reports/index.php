@@ -100,7 +100,7 @@ include '../includes/header.php';
         <?php include 'money_spe.php'; ?>
 
         <div class="report-section">
-            <form action="generate_report.php" method="post">
+            <form action="generate_report.php" method="post" target="_blank" class="report-form">
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="delete_transactions" name="delete_transactions" value="1">
                     <label for="delete_transactions">Delete transactions after generating report</label>

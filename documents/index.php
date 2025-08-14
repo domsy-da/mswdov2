@@ -55,13 +55,6 @@ if (isset($_GET['id'])) {
     ← Back
   </button>
 
-  <!-- Admin Button (visible only to admin users) -->
-  <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-    <button onclick="window.location.href='index-admin.php';" style="background: #fff; border: 1px solid #d97706; color: #b45309; border-radius: 8px; padding: 8px 18px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background 0.2s, border 0.2s;">
-      ⚙️ Admin Panel
-    </button>
-  <?php endif; ?>
-
   <!-- Service Dropdown -->
   <label for="service_select" style="font-weight: 500; margin-right: 8px; color: #374151;">Select Service:</label>
   <select id="service_select" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; font-size: 16px; background: #fff; color: #374151;">
@@ -95,6 +88,11 @@ if (isset($_GET['id'])) {
 <button id="fillDetails" style="background: #10b981; color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-size: 16px; font-weight: 500; cursor: pointer; box-shadow: 0 2px 8px rgba(16,185,129,0.08); transition: background 0.2s, box-shadow 0.2s;">
   📝 Fill Details
 </button>
+
+<div id="customToast" style="display:none;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:18px 28px;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,0.18);z-index:9999;min-width:260px;text-align:center;">
+  <span id="toastMsg"></span>
+  <div class="toast-actions"></div>
+</div>
 
 <!-- Add this just before the closing body tag in index.php -->
 <div id="detailsModal" class="modal">

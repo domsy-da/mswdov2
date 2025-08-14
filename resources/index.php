@@ -71,6 +71,15 @@ $resources = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <label for="target_beneficiaries">Target Beneficiaries:</label>
                         <input type="number" id="target_beneficiaries" name="target_beneficiaries" min="1" required />
                     </div>
+                    <div class="form-group">
+                        <label for="start_datetime">Start Date & Time:</label>
+                        <input type="datetime-local" id="start_datetime" name="start_datetime" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_datetime">End Date & Time:</label>
+                        <input type="datetime-local" id="end_datetime" name="end_datetime" required />
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -210,6 +219,8 @@ $resources = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <input type="text" name="program_name1" />
                 <input type="text" name="program_type1" />
                 <input type="text" name="target_beneficiaries1" />
+                <input type="text" name="start_datetime1" />
+                <input type="text" name="end_datetime1" />
                 <input type="text" name="program_description1" />
             </form>
         </div>
@@ -315,12 +326,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const programName = document.getElementById('program_name');
     const programType = document.getElementById('program_type');
     const targetBeneficiaries = document.getElementById('target_beneficiaries');
+    const startDatetime = document.getElementById('start_datetime');
+    const endDatetime = document.getElementById('end_datetime');
     const programDescription = document.getElementById('program_description');
 
     // Get references to the second form inputs
     const programName1 = document.querySelector('input[name="program_name1"]');
     const programType1 = document.querySelector('input[name="program_type1"]');
     const targetBeneficiaries1 = document.querySelector('input[name="target_beneficiaries1"]');
+    const startDatetime1 = document.querySelector('input[name="start_datetime1"]');
+    const endDatetime1 = document.querySelector('input[name="end_datetime1"]');
     const programDescription1 = document.querySelector('input[name="program_description1"]');
 
     // Add input event listeners to sync the values
@@ -335,6 +350,9 @@ document.addEventListener('DOMContentLoaded', function() {
     targetBeneficiaries.addEventListener('input', function() {
         targetBeneficiaries1.value = this.value;
     });
+
+    startDatetime.addEventListener('input', () => startDatetime1.value = startDatetime.value);
+    endDatetime.addEventListener('input', () => endDatetime1.value = endDatetime.value);
 
     programDescription.addEventListener('input', function() {
         programDescription1.value = this.value;

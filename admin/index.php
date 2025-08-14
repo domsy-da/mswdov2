@@ -10,6 +10,7 @@ checkAdminAccess();
 require_once '../includes/header.php';
 ?>
 <link rel="stylesheet" href="css/index.css">
+<title>Administration Panel</title>
 <div class="admin-container">
     <div class="admin-header">
         <h1>Administration Panel</h1>
@@ -23,6 +24,14 @@ require_once '../includes/header.php';
             <div class="card-content">
                 <h3>User Management</h3>
                 <p>Manage system users, roles, and permissions</p>
+            </div>
+        </a>
+        <!-- Certificate Management -->
+        <a href="../documents/index-admin.php" class="admin-card">
+            <div class="card-icon">📜</div>
+            <div class="card-content">
+                <h3>Certificate Management</h3>
+                <p>Manage system certificates and documents</p>
             </div>
         </a>
 

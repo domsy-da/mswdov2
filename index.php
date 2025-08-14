@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">Welcome to MSWDO APP</h1>
-                    <p class="hero-subtitle">Streamlining Social Services for Better Community Support</p>
+                    <p class="hero-subtitle">Improving Social Services for Better Community Support</p>
                     
                     <div class="hero-description">
                         <p>Our comprehensive management system helps Municipal Social Welfare and Development Offices efficiently track, manage, and support beneficiaries across various social programs. From registration to certificate generation, we provide the tools needed to deliver effective social services to your community.</p>

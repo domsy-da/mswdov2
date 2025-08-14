@@ -51,17 +51,20 @@ $sitios = $pdo->query($sitios_query)->fetchAll(PDO::FETCH_COLUMN);
         <div class="filters">
             <input type="text" id="searchInput" placeholder="Search client name or address...">
             <select id="barangayFilter">
-        <option value="">All Barangays</option>
-        <?php foreach ($barangays as $barangay): ?>
-            <option value="<?= htmlspecialchars($barangay) ?>"><?= htmlspecialchars($barangay) ?></option>
-        <?php endforeach; ?>
-    </select>
-    <select id="sitioFilter">
-        <option value="">All Sitios</option>
-        <?php foreach ($sitios as $sitio): ?>
-            <option value="<?= htmlspecialchars($sitio) ?>"><?= htmlspecialchars($sitio) ?></option>
-        <?php endforeach; ?>
-    </select>
+                <option value="">All Barangays</option>
+                <?php foreach ($barangays as $barangay): ?>
+                    <option value="<?= htmlspecialchars($barangay) ?>"><?= htmlspecialchars($barangay) ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select id="sitioFilter">
+                <option value="">All Sitios</option>
+                <?php foreach ($sitios as $sitio): ?>
+                    <option value="<?= htmlspecialchars($sitio) ?>"><?= htmlspecialchars($sitio) ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button onclick="window.location.href='purpose_report.php'" class="act-btn" style="margin-left: 10px;">
+                Sort by Purpose &amp; Generate PDF
+            </button>
         </div>
 
         <table id="clientsTable">
@@ -94,7 +97,7 @@ $sitios = $pdo->query($sitios_query)->fetchAll(PDO::FETCH_COLUMN);
                     </td>
                     <td>
                         <a href="view.php?id=<?= $client['beneficiary_id'] ?>" 
-                           class="action-btn" title="View Complete History">👁️</a>
+                           class="action-btn" title="View Complete History">👁️‍🗨️</a>
                         <a href="../beneficiaries/view.php?id=<?= $client['beneficiary_id'] ?>" 
                            class="action-btn" title="View Complete History">📝</a>
                     </td>
