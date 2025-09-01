@@ -255,9 +255,39 @@ $recent_transactions = $pdo->query("
             text-align: center;
         }
 
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filters select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+            min-width: 150px;
+        }
+
+        .filters select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
         @media (max-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .table-header {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -354,7 +384,32 @@ $recent_transactions = $pdo->query("
 
         <!-- Recent Transactions -->
         <div class="transactions-container">
-            <h2>Recent Transactions</h2>
+            <div class="table-header">
+                <h2>Recent Transactions</h2>
+                <div class="filters">
+                    <select id="monthFilter">
+                        <option value="">All Months</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="purposeFilter">
+                        <option value="">All Purposes</option>
+                        <option value="Medical Expense">Medical</option>
+                        <option value="Educational">Educational</option>
+                        <option value="Burial">Burial</option>
+                    </select>
+                </div>
+            </div>
             <table class="transactions-table">
                 <thead>
                     <tr>
@@ -375,7 +430,31 @@ $recent_transactions = $pdo->query("
             </table>
         </div>
     </div>
-    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const monthFilter = document.getElementById('monthFilter');
+    const purposeFilter = document.getElementById('purposeFilter');
+    const tableRows = document.querySelectorAll('.transactions-table tbody tr');
 
+    function filterTable() {
+        const selectedMonth = monthFilter.value;
+        const selectedPurpose = purposeFilter.value.toLowerCase();
+
+        tableRows.forEach(row => {
+            const date = row.cells[0].textContent; // Get date from first column
+            const purpose = row.cells[1].textContent.toLowerCase(); // Get purpose from second column
+            
+            const monthMatch = !selectedMonth || date.includes(`/${selectedMonth}/`) || 
+                             new Date(date).getMonth() + 1 === parseInt(selectedMonth);
+            const purposeMatch = !selectedPurpose || purpose.includes(selectedPurpose);
+
+            row.style.display = monthMatch && purposeMatch ? '' : 'none';
+        });
+    }
+
+    monthFilter.addEventListener('change', filterTable);
+    purposeFilter.addEventListener('change', filterTable);
+});
+</script>
 </body>
 </html>

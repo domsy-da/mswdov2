@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$db   = 'mswdo_dbv2'; // your db name
-$user = 'root'; // your db user
-$pass = ''; // your db password
+$db   = 'mswdo_dbv2'; 
+$user = 'root'; 
+$pass = ''; 
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
