@@ -130,12 +130,18 @@ $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         function goBack() {
             window.history.back();
         }
+        function archiveAll() {
+            if(confirm('Are you sure you want to move all transactions to archive?')) {
+                window.location.href = 'archive_all.php';
+            }
+        }
     </script>
 </head>
 <body>
     <div class="container">
         <button class="btn-back" onclick="goBack()">Back</button>
         <h1>Transaction Management</h1>
+        <button class="btn-delete" onclick="archiveAll()">Archive All</button>
         <input type="text" id="search" onkeyup="filterTable()" placeholder="Search transactions...">
         <table id="transactionsTable">
             <thead>
